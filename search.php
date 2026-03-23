@@ -1,4 +1,5 @@
 <?php
+$cookies = $_SERVER['HTTP_COOKIE'];
 require_once 'vendor/autoload.php';
 $resolver = new \NetDNS2\Resolver(
 [
@@ -27,13 +28,9 @@ else {
 }
 $searchq = $_SERVER['REQUEST_URI'];
 $search = "https://$hname$searchq";
-$cookies = $_SERVER['HTTP_COOKIE'];
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $search);
 curl_setopt($ch, CURLOPT_ENCODING, "");
-//curl_setopt($ch, CURLOPT_MAXREDIRS,10);
-//curl_setopt($ch, CURLOPT_VERBOSE, 0);
-//curl_setopt($ch, CURLOPT_HEADER, true);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_AUTOREFERER, true);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
@@ -43,7 +40,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Host: www.google.com',
     'X-Forwarded-For: 2a02:6ea0:d411:2415::11',
     'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36',
-    'Cookie: $cookies',
+    'Cookie: ' . $cookies,
 ]);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);

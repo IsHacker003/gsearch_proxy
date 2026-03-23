@@ -1,4 +1,5 @@
 <?php
+$cookies = $_SERVER['HTTP_COOKIE'];
 require_once 'vendor/autoload.php';
 $resolver = new \NetDNS2\Resolver(
 [
@@ -26,7 +27,6 @@ else {
   die("Unable to determine IP version.");
 }
 $search = "https://$hname/";
-$cookies = $_SERVER['HTTP_COOKIE'];
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $search);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -35,7 +35,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Host: www.google.com',
     'X-Forwarded-For: 2a02:6ea0:d411:2415::11',
     'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36',
-    'Cookie: $cookies',
+    'Cookie: ' . $cookies,
 ]);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
