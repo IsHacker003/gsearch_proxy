@@ -50,6 +50,10 @@ if (str_contains($searchq, 'errorlogging?')) {
     http_response_code(403);
     die("BLOCKED!");
 }
+if (str_contains($searchq, 'analytics')) {
+    http_response_code(403);
+    die("BLOCKED!");
+}
 $search = "https://$hname$searchq";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $search);
