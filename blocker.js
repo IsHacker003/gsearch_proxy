@@ -99,7 +99,7 @@ const AI_OVERVIEW_PATTERNS = [
 
 // CSS selectors for AI overview containers
 const AI_OVERVIEW_SELECTORS = {
-  SEARCH_RESULT_SELECTOR: "div#rso > div", 
+  SEARCH_RESULT_SELECTOR: "div#rso > div > div", 
   ABOVE_SEARCH_RESULTS_SELECTOR: "div#rcnt > div", 
 };
 
