@@ -51,6 +51,8 @@ $response = str_replace("<head>",'<head><script src="/blocker.js"></script>',$re
 
 $response = str_replace("www.googletagmanager.com","[::]",$response);
 
+$response = str_replace("www.googleadservices.com","[::]",$response);
+
 $response = str_replace("ogs.google.com","[::]",$response);
 
 $response = str_replace("</body>","<center><h1>This website is a proxy for Google Search.</h1></center></body>",$response);
