@@ -55,7 +55,7 @@ $response = str_replace("www.googleadservices.com","[::]",$response);
 
 $response = str_replace("www.google.com/pagead","[::]",$response);
 
-$response = str_replace("ogs.google.com","[::]",$response);
+$response = str_replace("ogs.google.com/callout","[::]/",$response);
 
 $response = str_replace("</body>","<center><h1>This website is a proxy for Google Search.</h1></center></body>",$response);
 
