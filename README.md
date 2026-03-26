@@ -69,3 +69,28 @@ Example entries:
 ```
 
 **NOTE:** You can also add hosts file entries from the web interface, but directly editing `/etc/hosts` is much more reliable.
+
+### Dynamic IP (DDNS)
+
+You can't add CNAME entries to the hosts file, unlike NextDNS's rewrites. So you need to add a custom dnsmasq config.
+
+1. On the web interface, go to Settings > All settings and change Basic mode toggle to expert mode (if not done already).
+
+![image](https://raw.githubusercontent.com/IsHacker003/IsHacker003/refs/heads/master/images_external/Pi-hole-expertmode-gsearchproxy.png)
+
+2. Go to Miscellanious tab and enable `misc.etc_dnsmasq_d` option.
+
+![image](https://github.com/IsHacker003/IsHacker003/blob/master/images_external/Pi-hole-gsearchproxy.png)
+
+3. Click Save Settings.
+
+4. Now SSH into the Pi and create a conf file under `/etc/dnsmasq.d`. You can give it any name with the .conf extension at the end.
+
+```
+nano /etc/dnsmasq.d/dns-rewrite-google.conf
+```
+
+5. Put this in the file and save it:
+```
+
+```
