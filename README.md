@@ -50,6 +50,6 @@ Here I will only show the steps for NextDNS and Pi-hole, as I have not used any 
 
 ### Dynamic IP (DDNS)
 
-If your server's IP keeps changing (e.g for IPv6), you can set up DDNS and use your DDNS domain as the answer for the rewrite. [Afraid.org](https://freeddns.afraid.org) offers both IPv4 and IPv6 DDNS.
+If your server's IP keeps changing (e.g for IPv6), you can set up DDNS on your server and use your DDNS domain as the answer for the rewrite. [Afraid.org](https://freeddns.afraid.org) offers both IPv4 and IPv6 DDNS.
 
 ![image](https://raw.githubusercontent.com/IsHacker003/IsHacker003/refs/heads/master/images_external/NextDNS-ddns-gsearchproxy.jpg)
