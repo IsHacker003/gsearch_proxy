@@ -63,8 +63,6 @@ $response = str_replace("</body>","<center><h1>This website is a proxy for Googl
 
 //http_response_code($httpcode);
 
-//$response = preg_replace('/([\s\S]*)(<div class="bzXtMb M8OgIe dRpWwb">)([\s\S]*)(<\/div>)([\s\S]*)/', '$1$5', $response);
-
 echo $response;
 
 curl_close($ch);
