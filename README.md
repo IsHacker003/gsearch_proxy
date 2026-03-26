@@ -40,7 +40,7 @@ Here I will only show the steps for NextDNS and Pi-hole, as I have not used any 
 
 ### Static IP
 
-1. Go to Settings tab in your NextDNS dashboard and click on New Rewrite under Rewrites.
+1. Go to Settings tab in your NextDNS dashboard and click on New Rewrite under DNS Rewrites.
 2. Enter `www.google.com` as domain and your server's IP as answer (e.g `192.168.1.128`)
 3. DNS rewrite has been set successfully, now wait a few minutes for the existing DNS cache to get flushed before opening Google.
 
