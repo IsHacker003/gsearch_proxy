@@ -14,7 +14,7 @@ Also, it focuses on using DNS rewrites. If you use a DNS service like NextDNS or
 
 ## Self-hosting (using nginx)
 
-**Note:** First make sure that you have the latest version of `nginx-full`, and `php-fpm` and `composer` is installed.
+**Note:** First make sure that you have the latest version of `nginx-full`, and `php-fpm` and `composer` is installed. The default config (`conf/nginx/google.conf`) also assumes that php-fpm runs on `127.0.0.1:9000`. Edit it if needed.
 
 1. Clone this repo:
 
