@@ -53,3 +53,19 @@ Here I will only show the steps for NextDNS and Pi-hole, as I have not used any 
 If your server's IP keeps changing (e.g for IPv6), you can set up DDNS on your server and use your DDNS domain as the answer for the rewrite. [Afraid.org](https://freedns.afraid.org) offers both IPv4 and IPv6 DDNS.
 
 ![image](https://raw.githubusercontent.com/IsHacker003/IsHacker003/refs/heads/master/images_external/NextDNS-ddns-gsearchproxy.jpg)
+
+## Pi-hole
+
+### Static IP
+
+Just SSH into the Pi to edit your hosts file and add your server's IP for `www.google.com`.
+```
+nano /etc/hosts
+```
+Example entries:
+```
+192.168.1.128 www.google.com # IPv4
+2a02:6ea0:d411:2415::11 www.google.com # IPv6
+```
+
+**NOTE:** You can also add hosts file entries from the web interface, but directly editing `/etc/hosts` is much more reliable.
