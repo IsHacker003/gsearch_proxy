@@ -37,3 +37,13 @@ Done! Now your proxy is running. Now you need to set up the DNS rewrite.
 Here I will only show the steps for NextDNS and Pi-hole, as I have not used any other DNS services.
 
 ## NextDNS
+
+### Static IP
+
+1. Go to Settings tab in your NextDNS dashboard and click on New Rewrite under Rewrites.
+2. Enter `www.google.com` as domain and your server's IP as answer (e.g `192.168.1.128`)
+3. DNS rewrite has been set successfully, now wait a few minutes for the existing DNS cache to get flushed before opening Google.
+
+![image](https://raw.githubusercontent.com/IsHacker003/IsHacker003/refs/heads/master/images_external/NextDNS-staticip-gsearchproxy.jpg)
+
+**NOTE:** You can create multiple rewrites for the same domain with different answers. So, you can create another rewrite with your server's **IPv6** address as answer.
