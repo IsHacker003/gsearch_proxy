@@ -1,6 +1,6 @@
 # Disclaimer
 
-**This project is 100% AI-free. All code has been written by me or with the help of other humans.**
+**This project is 100% AI-free. All code including this README has been written by me or with the help of other humans.**
 
 # gsearch_proxy
 
