@@ -92,5 +92,12 @@ nano /etc/dnsmasq.d/dns-rewrite-google.conf
 
 5. Put this in the file and save it:
 ```
-
+cname=www.google.com,<your DDNS domain>
 ```
+Example:
+```
+cname=www.google.com,gsearchproxy.ishacker.chickenkiller.com
+```
+6. Now again go to the web interface and restart Pi-hole DNS resolver using the Restart DNS resolver option under Settings > System.
+
+7. Pi-hole will now load the config file and the DNS rewrite will be activated.
