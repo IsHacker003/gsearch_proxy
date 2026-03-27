@@ -38,7 +38,6 @@ curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 //curl_setopt($ch, CURLOPT_COOKIEJAR, "cookies.txt");
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Host: www.google.com',
-    'X-Forwarded-For: 2a02:6ea0:d411:2415::11',
     'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36',
     'Cookie: ' . $cookies,
 ]);
