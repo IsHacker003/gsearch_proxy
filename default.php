@@ -1,6 +1,9 @@
 <?php
 $cookies = $_SERVER['HTTP_COOKIE'];
 $c_type = $_SERVER['HTTP_CONTENT_TYPE'];
+
+$response_headers = [];
+
 require_once 'vendor/autoload.php';
 $req_method = $_SERVER['REQUEST_METHOD'];
 $req_body = file_get_contents('php://input');
@@ -89,6 +92,20 @@ if ($req_method == 'POST') {
     curl_setopt($ch, CURLOPT_POSTFIELDS, $req_body);
 }
 
+curl_setopt($ch, CURLOPT_HEADERFUNCTION,
+    function($curl, $header) use (&$response_headers) {
+        $len = strlen($header);
+        $header = explode(':', $header, 2);
+        if (count($header) < 2) // ignore invalid headers
+          return $len;
+
+        $response_headers[strtolower(trim($header[0]))][] = trim($header[1]);
+
+        return $len;
+    }
+);
+
+
 $response = curl_exec($ch);
 
 if (!str_contains($searchq, '/recaptcha')) {
@@ -113,6 +130,12 @@ if (!str_contains($searchq, '/recaptcha')) {
 //$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
 //http_response_code($httpcode);
+
+foreach($response_headers as $name => $values)
+    if ($name == "content-type") {
+      foreach($values as $value)
+          header("$name: $value");
+    }
 
 echo $response;
 

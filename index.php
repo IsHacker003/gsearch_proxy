@@ -1,5 +1,8 @@
 <?php
 $cookies = $_SERVER['HTTP_COOKIE'];
+
+$response_headers = [];
+
 require_once 'vendor/autoload.php';
 $resolver = new \NetDNS2\Resolver(
 [
@@ -39,6 +42,19 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
+curl_setopt($ch, CURLOPT_HEADERFUNCTION,
+    function($curl, $header) use (&$response_headers) {
+        $len = strlen($header);
+        $header = explode(':', $header, 2);
+        if (count($header) < 2) // ignore invalid headers
+          return $len;
+
+        $response_headers[strtolower(trim($header[0]))][] = trim($header[1]);
+
+        return $len;
+    }
+);
+
 $response = curl_exec($ch);
 
 $response = str_replace("<head>",'<head><script src="/blocker.js"></script>',$response);
@@ -52,6 +68,12 @@ $response = str_replace("www.google.com/pagead","[::]",$response);
 $response = str_replace("ogs.google.com/widget/callout","[::]/",$response);
 
 $response = str_replace("</body>","<center><h1>This website is a proxy for Google Search.</h1></center></body>",$response);
+
+foreach($response_headers as $name => $values)
+    if ($name == "content-type") {
+      foreach($values as $value)
+          header("$name: $value");
+    }
 
 echo $response;
 
