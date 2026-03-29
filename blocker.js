@@ -29,9 +29,9 @@ const { fetch: originalFetch } = window;
 window.fetch = async (...args) => {
     let [resource, config ] = args;
 
-    if (resource.includes('/log?')) {
+    if (resource.includes('/log?') || resource.includes('_204')) {
 	console.log("Blocked: "+resource);
-	resource = "https://[::]";
+	resource = "";
 	return true;
     }
     else {
