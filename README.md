@@ -12,7 +12,7 @@ First of all, this proxy runs mostly on the client side. Your server only loads 
 
 Also, it focuses on using DNS rewrites. If you use a DNS service like NextDNS or Pi-hole, you can point `www.google.com` to your server's IP using a DNS rewrite, and it will always open your proxied page when you go to Google! (An HTTPS warning will appear for this, but keep reading to solve it)
 
-## Self-hosting (using nginx)
+# Self-hosting (using nginx)
 
 **Note:** First make sure that you have the latest version of `nginx-full`, and `php-fpm` and `composer` is installed. The default config (`conf/nginx/google.conf`) also assumes that php-fpm runs on `127.0.0.1:9000`. Edit it if needed.
 
