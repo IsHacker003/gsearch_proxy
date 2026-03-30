@@ -123,6 +123,36 @@ const TAB_PATTERNS = {
   AI_MODE: /^AI Mode$/i,
 };
 
+// Hide AI overview
+(function () {
+    'use strict';
+
+    const hideAIO = () => {
+        const aiBlocks = document.querySelectorAll('div[jscontroller="EYwa3d"]');
+        aiBlocks.forEach(el => {
+            el.style.display = 'none';
+            el.style.visibility = 'hidden';
+        });
+
+        const extraEl = document.querySelector('#Odp5De > div:nth-child(1) > div');
+        if (extraEl) {
+            extraEl.style.display = 'none';
+            extraEl.style.visibility = 'hidden';
+        }
+
+        const extraEl2 = document.querySelector('#m-x-content > div');
+        if (extraEl2) {
+            extraEl2.style.display = 'none';
+            extraEl2.style.visibility = 'hidden';
+        }
+    };
+
+    hideAIO();
+
+    const observer = new MutationObserver(hideAIO);
+    observer.observe(document, { childList: true, subtree: true });
+})();
+
 const getAiOverview = (mainBody) => {
   // Find all headings that match AI overview patterns
   const aiTexts = [...mainBody?.querySelectorAll("h1, h2")].filter((e) =>
@@ -146,11 +176,14 @@ const getAiOverview = (mainBody) => {
 const observer = new MutationObserver(() => {
   // each time there's a mutation in the document see if there's an ai overview to hide
   const mainBody = document.querySelector(DOM_SELECTORS.MAIN_BODY);
-  
-  const aiOverview = getAiOverview(mainBody);
 
-  // Hide AI overview
+  // Commented out because it's not working
+
+  // const aiOverview = getAiOverview(mainBody);
+
+/*  // Hide AI overview
   if (aiOverview) aiOverview.style.display = CSS_VALUES.HIDDEN;
+*/
 
   // Restore padding after header tabs
   const headerTabs = document.querySelector(DOM_SELECTORS.HEADER_TABS);
