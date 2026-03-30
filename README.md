@@ -104,8 +104,8 @@ cname=www.google.com,gsearchproxy.ishacker.chickenkiller.com
 
 ### Fix HTTPS error (ERR_CERT_AUTHORITY_INVALID)
 
-Since it uses a self-signed certificate (obviously, because no CA would issue certificates for google.com), browsers will give you a warning that the certificate is not recognized, and this might scare some people. To fix this, just import `.certs/cert.pem` as a certificate in your browser. For Android devices, chrome does not have any option to import a certificate, so you will need to install `cert.pem` as a "VPN and app certificate" from settings. You can also install it as a CA certificate, but it will constantly show a scary "Certificate authorities installed" notification.
+Since it uses a self-signed certificate (obviously, because no CA would issue certificates for google.com), browsers will give you a warning that the certificate is not recognized, and this might scare some people. To fix this, just import the `.cert/cert.pem` file from this repo as a certificate in your browser. For Android devices, chrome does not have any option to import a certificate, so you will need to install `cert.pem` as a "VPN and app certificate" from settings. You can also install it as a CA certificate, but it will constantly show a scary "Certificate authorities installed" notification.
 
-*You will need to install the certificate on all devices on your network."
+*You will need to install the certificate on all devices on your network.*
 
 ![image](https://raw.githubusercontent.com/IsHacker003/IsHacker003/refs/heads/master/images_external/https-warning-gsearchproxy.png)
