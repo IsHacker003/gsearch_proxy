@@ -98,7 +98,7 @@ Example:
 ```
 cname=www.google.com,gsearchproxy.ishacker.chickenkiller.com
 ```
-6. Now again go to the web interface and restart Pi-hole DNS resolver using the Restart DNS resolver option under Settings > System.
+6. Now again go to the web interface and restart Pi-hole DNS resolver using the Restart DNS resolver option on the Settings > System page.
 
 7. Pi-hole will now load the config file and the DNS rewrite will be activated.
 
