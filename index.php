@@ -1,6 +1,15 @@
 <?php
 $cookies = $_SERVER['HTTP_COOKIE'];
 
+$h_user_agent = $_SERVER['HTTP_USER_AGENT'];
+
+if (str_contains($h_user_agent, 'Android') || str_contains($h_user_agent, 'iPhone')) {
+    $p_user_agent = 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Mobile Safari/537.36';
+}
+else {
+    $p_user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36';
+}
+
 $response_headers = [];
 
 require_once 'vendor/autoload.php';
@@ -36,7 +45,7 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Host: www.google.com',
-    'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36',
+    'User-Agent: ' . $p_user_agent,
     'Cookie: ' . $cookies,
 ]);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
