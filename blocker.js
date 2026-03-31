@@ -1,3 +1,16 @@
+/*const csp_tag = 'default-src \'unsafe-inline\' * data:; script-src \'unsafe-inline\' https://*.ytimg.com https://*.google.com https://*.googleusercontent.com https://*.googleapis.com https://*.youtube.com https://*.youtube-nocookie.com https://*.googlevideo.com https://*.gstatic.com; connect-src \'unsafe-inline\' https://*.ytimg.com https://img.youtube.com https://*.googlevideo.com https://www.google.com https://*.gstatic.com https://*.googleusercontent.com;';
+
+console.log("Using CSP: "+csp_tag);
+
+function addCsptoIframes() {
+      var a_iframes = document.querySelectorAll("iframe");
+      for (var i = 0; i < a_iframes.length; i++) {a_iframes[i].csp = csp_tag;}
+}
+
+const iframe_observer = new MutationObserver(addCsptoIframes);
+iframe_observer.observe(document, { childList: true, subtree: true });
+*/
+
 // Intercept and block tracking urls by hooking into XHR and fetch methods
 
 // XHR
@@ -173,7 +186,7 @@ const getAiOverview = (mainBody) => {
   return null;
 };
 
-const observer = new MutationObserver(() => {
+const n_observer = new MutationObserver(() => {
   // each time there's a mutation in the document see if there's an ai overview to hide
   const mainBody = document.querySelector(DOM_SELECTORS.MAIN_BODY);
 
@@ -216,7 +229,7 @@ const observer = new MutationObserver(() => {
   }
 });
 
-observer.observe(document, {
+n_observer.observe(document, {
   childList: true,
   subtree: true,
 });
