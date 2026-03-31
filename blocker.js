@@ -1,3 +1,5 @@
+// Some non-working attempts to block tracking through iframes (e.g Youtube, ogs.google.com)
+
 /*const csp_tag = 'default-src \'unsafe-inline\' * data:; script-src \'unsafe-inline\' https://*.ytimg.com https://*.google.com https://*.googleusercontent.com https://*.googleapis.com https://*.youtube.com https://*.youtube-nocookie.com https://*.googlevideo.com https://*.gstatic.com; connect-src \'unsafe-inline\' https://*.ytimg.com https://img.youtube.com https://*.googlevideo.com https://www.google.com https://*.gstatic.com https://*.googleusercontent.com;';
 
 console.log("Using CSP: "+csp_tag);
@@ -10,6 +12,16 @@ function addCsptoIframes() {
 const iframe_observer = new MutationObserver(addCsptoIframes);
 iframe_observer.observe(document, { childList: true, subtree: true });
 */
+
+/*function sandboxIframes() {
+      var a_iframes = document.querySelectorAll("iframe");
+      for (var i = 0; i < a_iframes.length; i++) {a_iframes[i].sandbox = "allow-same-origin";}
+}
+
+const iframe_observer = new MutationObserver(sandboxIframes);
+iframe_observer.observe(document, { childList: true, subtree: true });
+*/
+
 
 // Intercept and block tracking urls by hooking into XHR and fetch methods
 
