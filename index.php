@@ -76,7 +76,7 @@ $response = str_replace("www.google.com/pagead","[::]",$response);
 
 $response = str_replace("ogs.google.com/widget/callout","[::]/",$response);
 
-$response = str_replace("</body>","<center><h1>This website is a proxy for Google Search.</h1></center></body>",$response);
+$response = str_replace("</body>","<center><h1>This website is a proxy for Google Search. <a href='https://github.com/IsHacker003/gsearch_proxy'>Source code.</a></h1></center></body>",$response);
 
 foreach($response_headers as $name => $values)
     if ($name == "content-type") {

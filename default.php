@@ -91,7 +91,7 @@ if ($c_type != null) {
 else {
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
         'Host: www.google.com',
-        'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36',
+        'User-Agent: ' . $p_user_agent,
         'Cookie: ' . $cookies,
     ]);
 }
@@ -130,7 +130,7 @@ if (!str_contains($searchq, '/recaptcha')) {
 
     $response = str_replace("ogs.google.com/widget/callout","[::]/",$response);
 
-    $response = str_replace("</body>","<center><h1>This website is a proxy for Google Search.</h1></center></body>",$response);
+    $response = str_replace("</body>","<center><h1>This website is a proxy for Google Search. <a href='https://github.com/IsHacker003/gsearch_proxy'>Source code.</a></h1></center></body>",$response);
 
     $response = str_replace("https://www.gstatic.com/marketing-cms/reviewed-scripts/gtm","https://[::]",$response);
 }
