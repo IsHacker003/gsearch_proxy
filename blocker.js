@@ -1,3 +1,21 @@
+/*
+    Copyright (C) 2026  IsHacker
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+*/
+
 // Some non-working attempts to block tracking through iframes (e.g Youtube, ogs.google.com)
 
 /*const csp_tag = 'default-src \'unsafe-inline\' * data:; script-src \'unsafe-inline\' https://*.ytimg.com https://*.google.com https://*.googleusercontent.com https://*.googleapis.com https://*.youtube.com https://*.youtube-nocookie.com https://*.googlevideo.com https://*.gstatic.com; connect-src \'unsafe-inline\' https://*.ytimg.com https://img.youtube.com https://*.googlevideo.com https://www.google.com https://*.gstatic.com https://*.googleusercontent.com;';
