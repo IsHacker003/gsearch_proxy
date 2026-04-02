@@ -72,19 +72,19 @@ if (str_contains($searchq, 'gen204')) {
     http_response_code(204);
     die("BLOCKED!");
 }
-if (str_contains($searchq, 'browserinfo?')) {
+if (str_contains($searchq, '/browserinfo')) {
     http_response_code(403);
     die("BLOCKED!");
 }
-if (str_contains($searchq, 'errorlogging?')) {
+if (str_contains($searchq, 'errorlogging')) {
     http_response_code(403);
     die("BLOCKED!");
 }
-if (str_contains($searchq, 'collect?')) {
+if (str_contains($searchq, '/collect')) {
     http_response_code(403);
     die("BLOCKED!");
 }
-if (str_contains($searchq, '/gmp/conversion')) {
+if (str_contains($searchq, '/conversion')) {
     http_response_code(403);
     die("BLOCKED!");
 }
