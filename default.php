@@ -80,6 +80,14 @@ if (str_contains($searchq, 'errorlogging?')) {
     http_response_code(403);
     die("BLOCKED!");
 }
+if (str_contains($searchq, 'collect?')) {
+    http_response_code(403);
+    die("BLOCKED!");
+}
+if (str_contains($searchq, '/gmp/conversion')) {
+    http_response_code(403);
+    die("BLOCKED!");
+}
 if (str_contains($searchq, 'analytics')) {
     http_response_code(403);
     die("BLOCKED!");
