@@ -58,6 +58,9 @@ iframe_observer.observe(document, { childList: true, subtree: true });
                 _onload.call(this)
             }
         }
+	// Since we can't know the request URL for xhr.send(), we distinguish tracking requests by their request body
+	// If it starts with "[" or "[[", it is a tracking request
+	// Legit POST requests won't start with those brackets, e.g POST requests for image uploads for Google Lens Search will start with binary data
 	if (data != null && data.startsWith("[")) {
 	       console.log("Blocked tracking request!");
 	}
