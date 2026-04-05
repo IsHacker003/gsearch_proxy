@@ -68,7 +68,8 @@ if (str_starts_with($searchq, '/async') && !(str_starts_with($searchq, '/async/i
     http_response_code(403);
     die("BLOCKED!");
 }
-if (str_contains($searchq, 'gen204')) {
+if (str_contains($searchq, '/gen204')) {
+    header("Content-Type: ");
     http_response_code(204);
     die("BLOCKED!");
 }
