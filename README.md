@@ -22,7 +22,7 @@ Also, it focuses on using DNS rewrites. If you use a DNS service like NextDNS or
 git clone https://github.com/IsHacker003/gsearch_proxy && cd gsearch_proxy
 ```
 
-2. Modify the config and copy it into `/etc/nginx/sites-enabled`:
+2. Replace the root directory in the config with current directory, and copy it into `/etc/nginx/sites-enabled`:
 
 ```
 sed -i -e 's#/usr/share/nginx/html/google#'$(pwd)'#g' conf/nginx/google.conf
