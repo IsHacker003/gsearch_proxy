@@ -180,6 +180,12 @@ const TAB_PATTERNS = {
             el.style.visibility = 'hidden';
         });
 
+	const aiButton = document.querySelectorAll('button[jscontroller="jNZDL"]');
+        aiButton.forEach(elb => {
+            elb.style.display = 'none';
+            elb.style.visibility = 'hidden';
+        });
+
         const extraEl = document.querySelector('#Odp5De > div:nth-child(1) > div');
         if (extraEl) {
             extraEl.style.display = 'none';
