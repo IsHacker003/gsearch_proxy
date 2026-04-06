@@ -16,6 +16,18 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
+function str_contains_any($i_var, $a_var) {
+    foreach ($a_var as $a_items)
+    {
+        if (str_contains($i_var, $a_items))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 $cookies = $_SERVER['HTTP_COOKIE'];
 
 $h_user_agent = $_SERVER['HTTP_USER_AGENT'];
@@ -60,13 +72,18 @@ else {
   die("Unable to determine IP version.");
 }
 $searchq = $_SERVER['REQUEST_URI'];
+
+$async_arr = [ 'hpba', 'bgasy', 'folsrch', 'folif', 'callback', 'folsearch' ];
+
 if (str_starts_with($searchq, '/pagead')) {
     http_response_code(403);
     die("BLOCKED!");
 }
-if (str_starts_with($searchq, '/async') && !(str_starts_with($searchq, '/async/imgv'))) {
-    http_response_code(403);
-    die("BLOCKED!");
+if (str_starts_with($searchq, '/async')) {
+    if (str_contains_any($searchq, $async_arr)) {
+        http_response_code(403);
+        die("BLOCKED!");
+    }
 }
 if (str_contains($searchq, '/gen204')) {
     header("Content-Type: ");
