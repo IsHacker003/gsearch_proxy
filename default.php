@@ -98,7 +98,7 @@ if (str_contains($searchq, '/browserinfo')) {
     http_response_code(403);
     die("BLOCKED!");
 }
-if (str_contains($searchq, 'errorlogging')) {
+if (str_contains($searchq, '/jserror')) {
     http_response_code(403);
     die("BLOCKED!");
 }
