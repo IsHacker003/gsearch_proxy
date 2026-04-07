@@ -58,7 +58,7 @@ else {
 
 $searchq = $_SERVER['REQUEST_URI'];
 
-$blocked_qstrs = [ 'client', 'oq', 'sourceid' ];
+$blocked_qstrs = [ 'client', 'sclient', 'oq', 'sourceid', 'source' ];
 
 $search_query = urlencode($_GET['q']);
 $searchq_qstr = $_SERVER['QUERY_STRING'];
@@ -86,6 +86,8 @@ if (str_contains_any_qstr($searchq, $blocked_qstrs)) {
     $searchq_qstr = rawurldecode(http_build_query($qstrs));
 
     $searchq = strtok($searchq, '?') . '?' . $searchq_qstr;
+
+    error_log("Warning: effective URL: " . $searchq, 0);
 }
 
 
