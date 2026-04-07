@@ -55,7 +55,40 @@ elseif(filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
 else {
   die("Unable to determine IP version.");
 }
+
 $searchq = $_SERVER['REQUEST_URI'];
+
+$blocked_qstrs = [ 'client', 'oq', 'sourceid' ];
+
+$search_query = urlencode($_GET['q']);
+$searchq_qstr = $_SERVER['QUERY_STRING'];
+
+function str_contains_any_qstr($i_var, $a_var) {
+    foreach ($a_var as $a_items)
+    {
+        $a_items = '&' . $a_items . '=';
+        if (str_contains($i_var, $a_items))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+if (str_contains_any_qstr($searchq, $blocked_qstrs)) {
+    parse_str($searchq_qstr, $qstrs);
+
+    foreach ($blocked_qstrs as $blocked_qstr) {
+        unset($qstrs[$blocked_qstr]);
+    }
+    $qstrs['q'] = $search_query;
+
+    $searchq_qstr = rawurldecode(http_build_query($qstrs));
+
+    $searchq = strtok($searchq, '?') . '?' . $searchq_qstr;
+}
+
+
 $search = "https://$hname$searchq";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $search);
