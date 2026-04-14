@@ -62,7 +62,7 @@ if ($_GET['q'] == "") {
 $sq = $_SERVER['REQUEST_URI'];
 $sq_b = strtok($sq, '?');
 
-$allowed_qstrs = [ 'q', 'hl', 'ie' ];
+$allowed_qstrs = [ 'q', 'xssi', 'hl', 'ie' ];
 
 if ($sq == $sq_b || $sq == $sq_b . '?') {
     $searchq = $sq;
