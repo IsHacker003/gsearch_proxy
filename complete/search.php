@@ -70,7 +70,7 @@ if ($sq == $sq_b || $sq == $sq_b . '?') {
 else {
     $searchq = $sq_b . '?client=' . urlencode($_GET['client']);
     foreach ($allowed_qstrs as $a_qstr) {
-          if (array_key_exists($a_qstr, $allowed_qstrs)) {
+          if (array_key_exists($a_qstr, $_GET)) {
               $searchq = $searchq . '&' . $a_qstr . '=' . urlencode($_GET[$a_qstr]);
           }
     }
