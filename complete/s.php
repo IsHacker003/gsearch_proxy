@@ -16,8 +16,6 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-$cookies = $_SERVER['HTTP_COOKIE'];
-
 $h_user_agent = $_SERVER['HTTP_USER_AGENT'];
 
 if (str_contains($h_user_agent, 'Android') || str_contains($h_user_agent, 'iPhone')) {
@@ -29,7 +27,7 @@ else {
 
 $response_headers = [];
 
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
 $resolver = new \NetDNS2\Resolver(
 [
     'nameservers'   => [ '2606:4700:4700::1111', '1.1.1.1' ],
@@ -56,38 +54,25 @@ else {
   die("Unable to determine IP version.");
 }
 
-$searchq = $_SERVER['REQUEST_URI'];
-
-$blocked_qstrs = [ 'client', 'sclient', 'oq', 'sourceid', 'source', 'gs_lcrp' ];
-
-$search_query = urlencode($_GET['q']);
-$searchq_qstr = $_SERVER['QUERY_STRING'];
-
-function str_contains_any_qstr($i_var, $a_var) {
-    foreach ($a_var as $a_items)
-    {
-        $a_items = '&' . $a_items . '=';
-        if (str_contains($i_var, $a_items))
-        {
-            return true;
-        }
-    }
-    return false;
+if ($_GET['q'] == "") {
+    http_response_code(403);
+    die("BLOCKED!);
 }
 
-if (str_contains_any_qstr($searchq, $blocked_qstrs)) {
-    parse_str($searchq_qstr, $qstrs);
+$sq = $_SERVER['REQUEST_URI'];
+$sq_b = strtok($sq, '?');
 
-    foreach ($blocked_qstrs as $blocked_qstr) {
-        unset($qstrs[$blocked_qstr]);
+$allowed_qstrs = [ 'client', 'xssi', 'hl', 'ie' ];
+
+if ($sq == $sq_b || $sq == $sq_b . '?') {
+    $searchq = $sq;
+}
+else {
+    $searchq = $sq_b . '?q=' . urlencode($_GET['q']);
+    foreach ($allowed_qstrs as $a_qstr) {
+          $searchq = $searchq . '&' . $a_qstr . '=' . urlencode($_GET[$a_qstr]);
     }
-    $qstrs['q'] = $search_query;
-
-    $searchq_qstr = rawurldecode(http_build_query($qstrs));
-
-    $searchq = strtok($searchq, '?') . '?' . $searchq_qstr;
-
-    error_log("Warning: effective URL: " . $searchq, 0);
+    error_log("Warning: effective URL: " . $searchq);
 }
 
 
@@ -103,7 +88,6 @@ curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Host: www.google.com',
     'User-Agent: ' . $p_user_agent,
-    'Cookie: ' . $cookies,
 ]);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -124,21 +108,9 @@ curl_setopt($ch, CURLOPT_HEADERFUNCTION,
 
 $response = curl_exec($ch);
 
-$response = str_replace("<head>",'<head><script src="/blocker.js"></script>',$response);
+$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-$response = str_replace("www.googletagmanager.com","[::]",$response);
-
-$response = str_replace("www.googleadservices.com","[::]",$response);
-
-$response = str_replace("www.google.com/pagead","[::]",$response);
-
-$response = str_replace("ogs.google.com/widget/callout","[::]/",$response);
-
-$response = str_replace("</body>","<center><h1>This website is a proxy for Google Search. <a href='https://github.com/IsHacker003/gsearch_proxy'>Source code.</a></h1></center></body>",$response);
-
-//$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-//http_response_code($httpcode);
+http_response_code($httpcode);
 
 foreach($response_headers as $name => $values)
     if ($name == "content-type") {
