@@ -56,7 +56,7 @@ else {
 
 if ($_GET['q'] == "") {
     http_response_code(403);
-    die("BLOCKED!);
+    die("BLOCKED!");
 }
 
 $sq = $_SERVER['REQUEST_URI'];
