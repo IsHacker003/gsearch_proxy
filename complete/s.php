@@ -16,6 +16,16 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
+function getParam($qparam) {
+  $a = array();
+  foreach (explode ("&", $_SERVER["QUERY_STRING"]) as $q) {
+    $p = explode ('=', $q, 2);
+    $a[$p[0]] = isset ($p[1]) ? $p[1] : '';
+  }
+  return $a[$qparam];
+}
+
+
 $h_user_agent = $_SERVER['HTTP_USER_AGENT'];
 
 if (str_contains($h_user_agent, 'Android') || str_contains($h_user_agent, 'iPhone')) {
@@ -71,10 +81,12 @@ else {
     $searchq = $sq_b . '?q=' . urlencode($_GET['q']);
     foreach ($allowed_qstrs as $a_qstr) {
           if (array_key_exists($a_qstr, $_GET)) {
-              $searchq = $searchq . '&' . $a_qstr . '=' . rawurlencode($_GET[$a_qstr]);
+              $searchq = $searchq . '&' . $a_qstr . '=' . getParam($a_qstr);
           }
     }
-    error_log("Warning: effective URL: " . $searchq);
+    if ($sq != $searchq) {
+       error_log("Warning: effective URL: " . $searchq);
+    }
 }
 
 
