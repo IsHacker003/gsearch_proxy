@@ -78,7 +78,7 @@ if ($sq == $sq_b || $sq == $sq_b . '?') {
     $searchq = $sq;
 }
 else {
-    $searchq = $sq_b . '?q=' . urlencode($_GET['q']);
+    $searchq = $sq_b . '?q=' . getParam('q');
     foreach ($allowed_qstrs as $a_qstr) {
           if (array_key_exists($a_qstr, $_GET)) {
               $searchq = $searchq . '&' . $a_qstr . '=' . getParam($a_qstr);
