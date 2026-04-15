@@ -71,7 +71,7 @@ else {
     $searchq = $sq_b . '?q=' . urlencode($_GET['q']);
     foreach ($allowed_qstrs as $a_qstr) {
           if (array_key_exists($a_qstr, $_GET)) {
-              $searchq = $searchq . '&' . $a_qstr . '=' . urlencode($_GET[$a_qstr]);
+              $searchq = $searchq . '&' . $a_qstr . '=' . rawurlencode($_GET[$a_qstr]);
           }
     }
     error_log("Warning: effective URL: " . $searchq);

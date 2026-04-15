@@ -54,7 +54,7 @@ else {
   die("Unable to determine IP version.");
 }
 
-if ($_GET['q'] == "") {
+if (($_GET['q'] == "" && !str_contains("gws", $_GET['client'])) || str_contains("on-focus", $_GET['client'])) {
     http_response_code(403);
     die("BLOCKED!");
 }
@@ -71,7 +71,7 @@ else {
     $searchq = $sq_b . '?client=' . urlencode($_GET['client']);
     foreach ($allowed_qstrs as $a_qstr) {
           if (array_key_exists($a_qstr, $_GET)) {
-              $searchq = $searchq . '&' . $a_qstr . '=' . urlencode($_GET[$a_qstr]);
+              $searchq = $searchq . '&' . $a_qstr . '=' . rawurlencode($_GET[$a_qstr]);
           }
     }
     error_log("Warning: effective URL: " . $searchq);
