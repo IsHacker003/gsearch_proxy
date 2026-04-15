@@ -64,7 +64,7 @@ else {
   die("Unable to determine IP version.");
 }
 
-if ($_GET['q'] == "") {
+if ($_GET['q'] == "" && !str_contains($_GET['client'], "gws")) {
     http_response_code(403);
     die("BLOCKED!");
 }
