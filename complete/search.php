@@ -54,7 +54,7 @@ else {
   die("Unable to determine IP version.");
 }
 
-if (($_GET['q'] == "" && !str_contains("gws", $_GET['client'])) || str_contains("on-focus", $_GET['client'])) {
+if ($_GET['q'] == "" && !str_contains($_GET['client'], "gws")) {
     http_response_code(403);
     die("BLOCKED!");
 }
