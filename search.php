@@ -140,11 +140,13 @@ $response = str_replace("</body>","<center><h1>This website is a proxy for Googl
 
 //http_response_code($httpcode);
 
-foreach($response_headers as $name => $values)
-    if ($name == "content-type") {
-      foreach($values as $value)
+foreach($response_headers as $name => $values) {
+    if ($name == "content-type" || $name == "accept-ch") {
+      foreach($values as $value) {
           header("$name: $value");
+      }
     }
+}
 
 echo $response;
 

@@ -188,17 +188,13 @@ $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
 http_response_code($httpcode);
 
-foreach($response_headers as $name => $values)
-    if ($name == "content-type") {
-      foreach($values as $value)
+foreach($response_headers as $name => $values) {
+    if ($name == "content-type" || $name == "accept-ch") {
+      foreach($values as $value) {
           header("$name: $value");
-    }
-    if ($name == "set-cookie") {
-      if (str_starts_with($searchq, '/setprefs')) {
-        foreach($values as $value)
-            header("$name: $value");
       }
     }
+}
 
 echo $response;
 
