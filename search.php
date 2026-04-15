@@ -58,7 +58,7 @@ else {
 
 $searchq = $_SERVER['REQUEST_URI'];
 
-$blocked_qstrs = [ 'client', 'sclient', 'oq', 'sourceid', 'source', 'gs_lcrp' ];
+$blocked_qstrs = [ 'client', 'sclient', 'oq', 'sourceid', 'source', 'gs_lcrp', 'gs_lp', 'sca_esv', 'sxrf' ];
 
 $search_query = urlencode($_GET['q']);
 $searchq_qstr = $_SERVER['QUERY_STRING'];
