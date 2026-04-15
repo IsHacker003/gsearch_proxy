@@ -136,17 +136,19 @@ $response = str_replace("ogs.google.com/widget/callout","[::]/",$response);
 
 $response = str_replace("</body>","<center><h1>This website is a proxy for Google Search. <a href='https://github.com/IsHacker003/gsearch_proxy'>Source code.</a></h1></center></body>",$response);
 
-//$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-//http_response_code($httpcode);
+http_response_code($httpcode);
 
 foreach($response_headers as $name => $values) {
-    if ($name == "content-type" || $name == "accept-ch") {
+    if ($name == "content-type") {
       foreach($values as $value) {
           header("$name: $value");
       }
     }
 }
+
+header("accept-ch: Sec-CH-Prefers-Color-Scheme");
 
 echo $response;
 
