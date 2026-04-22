@@ -64,6 +64,10 @@ else {
   die("Unable to determine IP version.");
 }
 
+
+// Chrome sends a request with empty search query to track when you open the browser or focus on the search bar
+// This blocks empty queries if client doesn't contain "gws" (chrome uses "chrome" as client)
+
 if ($_GET['q'] == "" && !str_contains($_GET['client'], "gws")) {
     http_response_code(403);
     die("BLOCKED!");
