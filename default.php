@@ -27,6 +27,27 @@ function str_contains_any($i_var, $a_var) {
     return false;
 }
 
+function getParam($qparam) {
+  $a = array();
+  foreach (explode ("&", $_SERVER["QUERY_STRING"]) as $q) {
+    $p = explode ('=', $q, 2);
+    $a[$p[0]] = isset ($p[1]) ? $p[1] : '';
+  }
+  return $a[$qparam];
+}
+
+function str_contains_any_qstr($i_var, $a_var) {
+    foreach ($a_var as $a_items)
+    {
+        $a_items = '&' . $a_items . '=';
+        if (str_contains($i_var, $a_items))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 
 $cookies = $_SERVER['HTTP_COOKIE'];
 
