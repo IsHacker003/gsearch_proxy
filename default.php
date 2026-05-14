@@ -100,6 +100,10 @@ if (str_starts_with($searchq, '/pagead')) {
     http_response_code(403);
     die("BLOCKED!");
 }
+if (str_starts_with($searchq, '/_/og/promos')) {
+    http_response_code(403);
+    die("BLOCKED!");
+}
 if (str_starts_with($searchq, '/httpservice/retry/ValidationAsyncService')) {
     http_response_code(403);
     die("BLOCKED!");
