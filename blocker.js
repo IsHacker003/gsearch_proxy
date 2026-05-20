@@ -92,6 +92,9 @@ window.fetch = async (...args) => {
 
 // Block gen_204 beacons
 
+// Not working
+
+/*
 function blockTrackingBeacons() {
      console.log("Blocked tracking beacon!");
      return true;
@@ -103,23 +106,23 @@ Object.defineProperty(window.Navigator.prototype, 'sendBeacon', {
   },
   set: function(ignored) { }
 });
+*/
 
+// Implementation taken from "Don't track me google" userscript
 
-// Alternative implementation taken from "Don't track me google" userscript
+(function() {
+        var navProto = window.Navigator.prototype;
+        var navProtoSendBeacon = navProto.sendBeacon;
+        if (!navProtoSendBeacon) {
+            return;
+        }
+        var sendBeacon = Function.prototype.apply.bind(navProtoSendBeacon);
 
-//(function() {
-//        var navProto = window.Navigator.prototype;
-//        var navProtoSendBeacon = navProto.sendBeacon;
-//        if (!navProtoSendBeacon) {
-//            return;
-//        }
-//        var sendBeacon = Function.prototype.apply.bind(navProtoSendBeacon);
-//
-//        navProto.sendBeacon = function(url, data) {
-//             console.log("Blocked tracking beacon!");
-//             return true;
-//       };
-//})();
+        navProto.sendBeacon = function(url, data) {
+             console.log("Blocked tracking beacon!");
+             return true;
+       };
+})();
 
 
 
