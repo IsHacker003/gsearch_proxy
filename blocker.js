@@ -98,6 +98,8 @@ function blockTrackingBeacons() {
      return true;
 }
 
+window.google = new Object();
+
 Object.defineProperty(window.Navigator.prototype, 'sendBeacon', {
   get: function() {
     return blockTrackingBeacons;
@@ -105,14 +107,14 @@ Object.defineProperty(window.Navigator.prototype, 'sendBeacon', {
   set: function(ignored) { }
 });
 
-Object.defineProperty(window.google.prototype, 'log', {
+Object.defineProperty(window.google, 'log', {
   get: function() {
     return blockTrackingBeacons;
   },
   set: function(ignored) { }
 });
 
-Object.defineProperty(window.google.prototype, 'logUrl', {
+Object.defineProperty(window.google, 'logUrl', {
   get: function() {
     return blockTrackingBeacons;
   },
