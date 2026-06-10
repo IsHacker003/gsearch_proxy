@@ -105,14 +105,14 @@ Object.defineProperty(window.Navigator.prototype, 'sendBeacon', {
   set: function(ignored) { }
 });
 
-Object.defineProperty(window.google, 'log', {
+Object.defineProperty(window.google.prototype, 'log', {
   get: function() {
     return blockTrackingBeacons;
   },
   set: function(ignored) { }
 });
 
-Object.defineProperty(window.google, 'logUrl', {
+Object.defineProperty(window.google.prototype, 'logUrl', {
   get: function() {
     return blockTrackingBeacons;
   },
