@@ -84,7 +84,7 @@ curl_setopt($ch, CURLOPT_HEADERFUNCTION,
 
 $response = curl_exec($ch);
 
-$response = str_replace("<head>",'<head><script src="/blocker.js"></script>',$response);
+$response = str_replace("<body",'<script>var defglog = 1;</script><script src="/blocker.js"></script><body',$response);
 
 $response = str_replace("www.googletagmanager.com","[::]",$response);
 
