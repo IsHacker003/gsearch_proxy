@@ -105,6 +105,20 @@ Object.defineProperty(window.Navigator.prototype, 'sendBeacon', {
   set: function(ignored) { }
 });
 
+Object.defineProperty(window.google, 'log', {
+  get: function() {
+    return blockTrackingBeacons;
+  },
+  set: function(ignored) { }
+});
+
+Object.defineProperty(window.google, 'logUrl', {
+  get: function() {
+    return blockTrackingBeacons;
+  },
+  set: function(ignored) { }
+});
+
 
 // Alternative implementation taken from "Don't track me google" userscript
 
