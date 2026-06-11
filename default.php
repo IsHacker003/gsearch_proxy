@@ -114,6 +114,11 @@ if (str_starts_with($searchq, '/async')) {
         die("BLOCKED!");
     }
 }
+if (str_starts_with($searchq, '/verify/')) {
+   header("Content-Type: ");
+   http_response_code(204);
+   die("Generated 204.");
+}
 if (str_contains($searchq, '/gen204')) {
     header("Content-Type: ");
     http_response_code(204);
