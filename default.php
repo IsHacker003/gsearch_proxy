@@ -115,7 +115,7 @@ if (str_starts_with($searchq, '/async')) {
     }
 }
 if (str_starts_with($searchq, '/verify/')) {
-   header("Content-Type: ");
+   header("Content-Type: text/plain; charset=UTF-8");
    http_response_code(204);
    die("Generated 204.");
 }
