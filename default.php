@@ -94,7 +94,7 @@ else {
 }
 $searchq = $_SERVER['REQUEST_URI'];
 
-$async_arr = [ 'hpba', 'bgasy', 'folsrch', 'folif', 'callback', 'folsearch', 'ddllog' ];
+$async_arr = [ 'hpba', 'bgasy', 'folsrch', 'folif', 'folwr', 'callback', 'folsearch', 'ddllog' ];
 
 if (str_starts_with($searchq, '/pagead')) {
     http_response_code(403);
