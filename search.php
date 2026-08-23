@@ -104,6 +104,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Host: www.google.com',
     'User-Agent: ' . $p_user_agent,
     'Cookie: ' . $cookies,
+    'X-Forwarded-For: ' . $ip,
 ]);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
