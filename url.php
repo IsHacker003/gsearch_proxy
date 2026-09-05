@@ -18,6 +18,6 @@
 
 http_response_code(301);
 
-header("Location: " . $_GET['url']);
+header("Location: " . $_GET['q']);
 
 ?>
